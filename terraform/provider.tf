@@ -3,10 +3,11 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket  = "task7-terraform-state-jeevan-811738710312"
+    bucket  = "task7-terraform-state-jeevan"   
     key     = "task7/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
 }
+
 
