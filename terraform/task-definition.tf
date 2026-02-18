@@ -1,9 +1,10 @@
 resource "aws_ecs_task_definition" "strapi_task" {
   family                   = "strapi-task"
-  network_mode             = "bridge"
-  requires_compatibilities = ["EC2"]
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
   memory                   = "512"
+
 
   container_definitions = jsonencode([
     {
@@ -12,8 +13,8 @@ resource "aws_ecs_task_definition" "strapi_task" {
 
       portMappings = [{
         containerPort = 1337
-        hostPort      = 1337
       }]
+
 
       environment = [
         { name = "DATABASE_CLIENT", value = "postgres" },
